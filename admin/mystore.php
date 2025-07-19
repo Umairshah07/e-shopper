@@ -1,40 +1,55 @@
+<?php
+session_start();
+?>
+
+<!-- SweetAlert2 CDN -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+
+
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Admin Page</title>
+   
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+     <link rel="icon" type="image/png" href="../user/fav2.png">
   </head>
-  <?php
 
-    session_start();
-    if (!$_SESSION['admin@admin.com']) {
-     header("location: form/login.php");
-    }
-
-
-  ?>
   <body>
-   <nav class="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
-  <div class="container-fluid text-white">
-    <a class="navbar-brand text-white"> <h1 style="font-family: monospace;"> My Store</h1> </a>
-    <span>
-      <i class="fa-solid fa-user-shield"></i>
-      Hello, <?php echo $_SESSION['admin@admin.com']; ?> | 
-      <i class="fa-solid fa-right-from-bracket"></i>
-      <a href="form/logout.php" class="text-decoration-none text-white">Logout</a> |
-      <a href="../user/index.php" class="text-decoration-none text-white">UserPanel</a>
-    </span>
-  </div>
-</nav>
+    <?php
+if (isset($_SESSION['login_success'])) {
+    echo "
+    <script>
+    Swal.fire({
+        icon: 'success',
+        title: 'Login Successful',
+        confirmButtonColor: '#c17a74',
+        timer: 2500,
+        timerProgressBar: true,
+        showConfirmButton: true
+    });
+    </script>
+    ";
+    unset($_SESSION['login_success']);
+}
+?>
+    <?php
+ include 'navbar.php';
+    ?>
+
+
           <div>
-            <h2 class="text-center">
-             DashedBoard   
+      
+            <h2 class="text-center font-monospace" style="color: #a75c56;">
+             Dash Board   
            </h2>
         </div>
-          <div class="bg-danger text-center py-2 col-md-6 m-auto">
+          <div class=" text-center py-2 font-monospace col-md-6 m-auto" style="background-color: #c17a74;;">
             <a href="../product/index.php" class="text-white text-decoration-none fs-4 fw-bold px-5">Add Post</a>
             <a href="user.php" class="text-white text-decoration-none fs-4 fw-bold px-5">Users</a>
           </div>

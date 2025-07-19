@@ -4,44 +4,50 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>User-Panel</title>
+   <link rel="icon" type="image/png" href="../user/fav2.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
   </head>
   <body>
     
       <?php
         include 'mystore.php';
+           $a = 0;
    $con = mysqli_connect('localhost', 'root', '', 'ecommerce');
    $Record = mysqli_query($con, "SELECT * FROM `tbluser`");
    $row_count = mysqli_num_rows($Record);
+   
 
       ?>
       <div class="container mt-5">
         <div class="row">
           <div class="col-md-10">
         
-      <table class="table table-danger table-bordered ">
-        <thead class="text-center text-white">
+      <table class="table  table-bordered " >
+        <thead class="text-center text-white" >
 
-          <th>S.N</th>
-          <th>Name</th>
-          <th>Email</th>
-          <th>Number</th>
-          <th>Delete</th>
+          <th class="text-white" style="background-color: #c17a74;">#</th>
+          <th class="text-white" style="background-color: #c17a74;">Name</th>
+          <th class="text-white" style="background-color: #c17a74;">Email</th>
+          <th class="text-white" style="background-color: #c17a74;">Number</th>
+          <th class="text-white" style="background-color: #c17a74;">Action</th>
 <a href=""></a>
         </thead>
-        <tbody class="text-center text-danger">
+        <tbody class="text-center "  >
           <?php
-
+    
       while( $row = mysqli_fetch_array($Record)){
+        $a++;
         echo"
               <tr>
-            <td>$row[Id]</td>
+            <td>$a</td>
             <td>$row[Username]</td>
             <td>$row[Email]</td>
             <td>$row[Number]</td>
-            <td><a href='delete.php? ID=$row[Id]' class='btn btn-outline-danger'>Delete</a></td>
+            <td><a href='delete.php? ID=$row[Id]' class='btn text-white'style='background-color: #c17a74;' >Delete</a></td>
              </tr>
+
               ";
+              
       }
 
         ?>
@@ -51,8 +57,8 @@
        </div>
 
             <div class="col-md-2 pr-5 text-center">
-              <h3 class="text-danger">Total</h3>
-              <h1 class="bg-danger text-white"><?php echo $row_count; ?></h1>
+              <h3 class=" font-monospace" style="color: #c17a74;">Total</h3>
+              <h1 class=" text-white" style="background-color: #c17a74;"><?php echo $row_count; ?></h1>
             </div>
 
 
